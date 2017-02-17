@@ -25,6 +25,13 @@ echo $(tput setaf 3)Parsing Domain Password Policy to txt file:$(tput setaf 7)  
 grep -A 25 "Password Info for Domain" $1 | tee Domain_PasswordPolicy.txt
 echo " "
 
+echo $(tput setaf 3)Parsing instances of pass, Pass, cred, and Cred to txt file:$(tput setaf 7)  Domain_Interesting_Descriptions.txt
+grep "Pass" $1 | tee Domain_Interesting_Descriptions.txt
+grep "pass" $1 | tee -a Domain_Interesting_Descriptions.txt
+grep "Cred" $1 | tee -a Domain_Interesting_Descriptions.txt
+grep "cred" $1 | tee -a Domain_Interesting_Descriptions.txt
+echo " "
+
 echo $(tput setaf 3)Resolving Domain Computers to IP Addresses:$(tput setaf 7)  Domain_Computers_IP.txt
 
 for ip in $(cat Domain_Computers.txt); do
